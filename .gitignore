@@ -57,4 +57,4 @@ docs/_build/
 target/
 
 # SQL Ignore
-hero/db.sqlite3
+*.sqlite3
