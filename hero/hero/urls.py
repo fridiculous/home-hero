@@ -13,9 +13,12 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import patterns, url
+from hero.views import PropertyViewSet
 
-urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-]
+
+urlpatterns = patterns(
+    '',
+    url(r'^api/property/(?P<resource_id>\d+)[/]?$', PropertyViewSet.as_view(), name='my_rest_view'),
+    url(r'^api/property[/]?$', PropertyViewSet.as_view(), name='my_rest_view'),
+)
