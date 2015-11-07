@@ -21,3 +21,12 @@ docker run -p 8000:8000 -it --rm -v $(pwd)/hero:/code api python3 manage.py migr
 
 docker run -p 8000:8000 -it --rm -v $(pwd)/hero:/code api python3 manage.py runserver 0.0.0.0:8000
 ```
+
+
+### data exploration
+
+```
+# for notebook and exploration
+
+docker run -p 8888:8888 -it --rm -v $(pwd)/hero:/code -v $(pwd)/data:/data api sh -c "ipython notebook  --no-browser --port 8888 --ip=0.0.0.0"    
+```
