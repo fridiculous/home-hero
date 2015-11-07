@@ -12,5 +12,9 @@ docker build -t api .
 ### Running
 
 ```
-docker run -it api bash
+# as bash
+docker run -p 80:8000 -it --rm -v $(pwd):/code api bash
+
+# as a server
+docker run -p 80:8000 -it --rm -v $(pwd):/code api python3 hero/manage.py runserver 0.0.0.0:8000
 ```
