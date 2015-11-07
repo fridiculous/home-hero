@@ -18,4 +18,4 @@ COPY requirements.txt /code/requirements.txt
 WORKDIR /code
 RUN pip3 install -r requirements.txt
 
-CMD jupyter notebook
+CMD echo 'hi'
