@@ -94,6 +94,20 @@ DATABASES = {
     }
 }
 
+# rest_framework
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 10,
+    'MAX_PAGINATE_BY': 500,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'lib.renderers.JSONRenderer',
+    # ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
