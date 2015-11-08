@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import patterns, url
-from hero.views import PropertyViewSet
+from hero.views import PropertyViewSet, UserViewSet
 
 
 urlpatterns = patterns(
     '',
     url(r'^api/property/(?P<resource_id>\d+)[/]?$', PropertyViewSet.as_view(), name='my_rest_view'),
     url(r'^api/property[/]?$', PropertyViewSet.as_view(), name='my_rest_view'),
+    url(r'^api/email[/]?$', UserViewSet.as_view(), name='my_user_view'),
 )
