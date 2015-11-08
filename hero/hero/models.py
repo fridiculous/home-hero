@@ -22,4 +22,6 @@ class User(object):
         self.phone = kwargs.get('phone')
         self.profile_photo = kwargs.get('profile_photo')
         self.address = kwargs.get('address')
+        self.latitude = kwargs.get('latitude')
+        self.longitude = kwargs.get('longitude')
         self.property_type = kwargs.get('property_type')
