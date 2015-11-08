@@ -64,6 +64,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
 
   <!-- Modal -->
+<div ng-app="myApp" ng-controller="signinCtrl">
   <div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
 
@@ -79,18 +80,19 @@ http://www.templatemo.com/free-website-templates/395-urbanic
           <form role="form">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+              <input type="text" class="form-control" id="usrname" ng-model="userEmail" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
               <!--  data-toggle="modal" data-target="#profile"  -->
-              <button type="" class="btn btn-success btn-block" >
-              <a href="/index.html"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button class="btn btn-success btn-block" ng-click="sendEmail()">
+                <a href="/index.html"><span class="glyphicon glyphicon-off"></span>Login
+              </button>
           </form>
         </div>
         <div class="modal-footer">
@@ -102,14 +104,15 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
     </div>
   </div>
+
 </div>
 
+<div ng-app="myApp" ng-controller="customersCtrl">
 
         <div class="container" style="margin-top:40px;">
         </div>
 
 
-<div ng-app="myApp" ng-controller="customersCtrl">
     <!--    <div>sortType{{ sortType }}</div>
             <div>sortReverse{{ sortReverse }}</div>  -->
 
@@ -455,8 +458,25 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         });
 
         var app = angular.module('myApp', []);
+        app.controller('signinCtrl', function($scope, $http) {
+
+          $scope.sendEmail = function(){
+              console.log('EMAIL SENT');
+              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=simonfrid@gmail.com")
+              .success(function (response) {});
+          };
+        });
+
         app.controller('customersCtrl', function($scope, $http) {
-          $http.get("https://c7f4f4f3.ngrok.io/api/property")
+
+          $scope.sendEmail = function(){
+              console.log('EMAIL SENT');
+              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=simonfrid@gmail.com")
+              .success(function (response) {});
+          };
+
+          // $http.get("https://c7f4f4f3.ngrok.io/api/property")
+          $http.get("http://192.168.99.100:8000/api/property")
           .success(function (response) {
             $scope.sortType = 'score';
             $scope.sortReverse = true;
