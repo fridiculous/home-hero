@@ -64,3 +64,4 @@ data/az_df.csv
 
 # ipython
 *.ipython
+*.ipynb_checkpoints
