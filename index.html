@@ -470,6 +470,12 @@ http://www.templatemo.com/free-website-templates/395-urbanic
             };
             };
           });
+
+          // Send Email
+          $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=kyle.retsly@gmail.com")
+            .success(function (response) {
+              console.log(response);
+          });
         });
 
 

@@ -442,9 +442,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         app.controller('signinCtrl', function($scope, $http) {
           $scope.sendEmail = function(){
               console.log('EMAIL SENT');
-              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=kyle.retsly@gmail.com")
-              .success(function (response) {
-              });
+
           };
         });
 
