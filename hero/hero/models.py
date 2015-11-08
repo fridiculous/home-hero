@@ -1,3 +1,6 @@
+import json
+
+
 class Property(object):
 
     def __init__(self, **kwargs):
@@ -5,4 +8,7 @@ class Property(object):
         self.photos = kwargs.get('photos')
 
     def analyze(self):
-        return {'result': 12344}
+        with open('hero/data/phoenix.json') as data_file:
+            data = json.load(data_file)
+
+        return data
