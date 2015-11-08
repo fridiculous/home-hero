@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home Hero </title>
+        <meta name="keywords" content="" />
+		<meta name="description" content="" />
+<!--
+
+Template
+
+http://www.templatemo.com/free-website-templates/395-urbanic
+
+-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link rel="shortcut icon" href="PUT YOUR FAVICON HERE">-->
+        
+        <!-- Google Web Font Embed -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
+
+        <!-- Custom styles for this template -->
+        <link href="js/colorbox/colorbox.css"  rel='stylesheet' type='text/css'>
+        <link href="css/style.css"  rel='stylesheet' type='text/css'>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> 
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js"  type="text/javascript"></script>
+        <script src="js/stickUp.min.js"  type="text/javascript"></script>
+        <script src="js/colorbox/jquery.colorbox-min.js"  type="text/javascript"></script>
+        <script src="js/templatemo_script.js"  type="text/javascript"></script>
+
+    </head>
+    
+    <body>
+
+
+     <nav class="navbar navbar-default" >
+      <div class="row col-xs-12" id="top">
+             <ul style="list-style-type:none">
+                    <li class="col-sm-3"> <a class="brand" href="index.html"><img src="images/homehero6.png" alt="Home Hero" title="Home Hero" /></a>
+                    </li>
+
+                <li class="col-sm-5"> <h1 align="center"> <span class="txt_white">Welcome to </span><span class="txt_green">Home Hero</span> </h1>
+                        <p class="txt_slogan"><i>Find your next Contract Job.</i></p> </li>
+        
+            
+                <li class="active col-sm-2 navbar-right hidden ">
+                 <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#login">Login</button>
+                </li>
+
+                 <li class="active col-sm-2 navbar-right  ">
+                <button type="button" class="btn btn-default btn-primary btn-lg" data-toggle="modal" data-target="#profile"> Profile <span class="badge">6 
+                </span></button></li>
+                
+
+          </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+            
+
+
+ 
+  <!-- Modal -->
+  <div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div style="display=inline"> <img class="image-responsive" src="images/homehero6.png" alt="Home Hero" title="Home Hero" />
+          <h1 align="center"> <span class="txt_blue"> <span class="glyphicon glyphicon-lock"></span> Login</h1>
+            </div>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="" class="btn btn-success btn-block" data-toggle="modal" data-target="#profile" ><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
+
+
+
+<div ng-app="myApp" ng-controller="customersCtrl"> 
+    <!--    <div>sortType{{ sortType }}</div>
+            <div>sortReverse{{ sortReverse }}</div>  -->
+
+        <div class="col-xs-12 lead text-center" style="font-size:16px; margin-top:20px;">
+           <h4 style="display:inline;"> Sort by: </h4>
+
+            <a href="#" class="btn btn-sort " ng-click="sortType='score'; sortReverse = !sortReverse">Best Fit</a> 
+            <a href="#" class="btn btn-sort " ng-click="sortType='job_value'; sortReverse = !sortReverse">Renovation Value</a>
+            <a href="#" class="btn btn-sort " ng-click="sortType='price'; sortReverse = !sortReverse">Sale Price</a>
+            <a href="#" class="btn btn-sort " ng-click="sortType='days_since_updated'; sortReverse = !sortReverse">Days Since Sale</a>
+        </div>
+
+
+                <ul style="list-style-type:none">
+                    <li ng-repeat="lead in leads | orderBy:sortType:sortReverse">
+                        <a href=""  data-toggle="modal" data-target="#property" >
+                        <div ng-click="property.push(lead)" class="container colorbox col-xs-10 templatemo-project-box" >
+                                <div class="project-overlay">
+                                   <br><br><br> 
+                                   <h3 class="xs-hidden"> Click to see Property Details </h3> 
+                                </div>
+
+                                <div class="container col-xs-10 col-sm-4">
+                                    <img style="max-height:180px" class="image-responsive" src="{{ lead.media[0].url }}" /> 
+                                </div>
+
+                                 <div class="container col-xs-10 col-sm-6 ">
+                                   <ul style="list-style-type:none">
+                                     <li> <h3> Renovation Value: ${{ lead.job_value/1000 | number:0}}k </h3></li>
+                                        <li> Sale Price: ${{ lead.price/1000 | number:0}}k  </li>
+                                     <li> Sold: {{ lead.days_since_updated }} days ago </li>
+                                   <!--            {{ lead.listDate | timeAgo }},  -->
+                                    <li>    Distance: {{ lead.distance_from_user | number:0 }} mi </li>
+                                    <li>   Score: {{ lead.score | number:0}} </li>
+                                    </ul>
+                                </div>
+                        </div>
+                        </a>
+                            <div class="row center-block">
+                                 <div class="center-block col-xs-5 center-block">
+                                <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-remove "></span> No Thanks</a> </div>
+                                <div class="col-xs-6 btn-right">
+                               <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-heart"></span> Yes, Save this Job! </a> </div>
+                           </div> 
+                    </li>
+                </ul>
+          
+
+
+            <div id="property" class="modal fade">
+                 <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                             <div class="modal-header" style="padding:25px margin-top:20px;">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 align="center modal-title"> <span class="txt_blue"> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </span> </h2>
+                           </div>
+                            
+                            <div class="modal-body" style="padding:10px; float:center;">
+                                 <div class="container-fluid col-xs-12" style="font-size:16px; margin-top:20px;">
+                                        <h1 class="txt_green">Property Details </h1>
+
+                                         <ul class="list-inline text-center" style="list-style-type:none">
+                                             <li> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k |</li>
+                                                <li> Sale Price: ${{ property[property.length - 1].price/1000 | number:0}}k  |</li>
+                                             <li> Sold: {{ property[property.length - 1].days_since_updated }} days ago |</li>
+                                           <!--            {{ property[property.length - 1].listDate | timeAgo }},  -->
+                                            <li>    Distance: {{ property[property.length - 1].distance_from_user | number:0 }} mi </li>
+                                            <li>   Score: {{ property[property.length - 1].score | number:0}} </li>
+                                         </br> <br>
+                                            <div class="photo-slider" style="float:center;">
+                                                <div ng-repeat="img in property[property.length - 1].media" style="display:inline;">
+                                                <img class="image-responsive" src="{{ img.url }}"  style="float:center;" />
+                                                </div>
+                                            </div>
+                                         </ul>
+                                    
+                                          <div class="col-sm-12">
+                                               <h3 align="left"> This Property Needs Work On: </h3>                    
+                                                <br>
+                                                      <div class="btn-group" data-toggle="buttons">
+                                                        <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox" checked> Exterior  </label>
+                                                        <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox"> Kitchen </label>
+                                                      <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox" checked> Floors </label>
+                                                        <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox"> Walls </label>
+                                                           <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox" checked> Roof </label>
+                                                        <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox"> Bathroom </label>
+                                                       <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox" checked> Decor </label>
+                                                        <label class="btn btn-default btn-lg active">
+                                                          <input type="checkbox"> Foundation </label>
+                                                       </div>
+                                          </div>
+
+                                    <div class="row center-block">
+                                        <div class="col-xs-6 col-xs-offset-6 btn-right">
+                                       <button class="btn btn-fav btn-default txt_white" data-dismiss="modal"> <span class="glyphicon glyphicon-heart"></span> Save this Job! </button> </div>
+                                   </div> 
+                                       
+                          
+
+                                     <div class="modal-footer"> 
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                    </div> <!--close container  -->
+                            </div>  <!--close modal body -->
+
+                    </div>  <!--close content -->
+                    </div>  <!--close prop dialog -->
+                </div><!--close prop tag -->
+</div> <!--close app -->
+
+
+
+
+
+
+<div id="profile" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+            <div class="modal-header" style="padding:35px 30px;">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h1 align="center"> <span class="txt_blue"> Profile </span><span class="txt_green">  | Settings</span> </h1>
+            </div>
+              
+
+    <div class="modal-body" style="padding:40px 50px;">
+        <div class="container" style="font-size:16px; margin-top:30px;">
+                
+                    <div class="container col-md-10 text-center">
+                         <div class="col-md-7 ">
+                                    <h2><span class="txt_blue">Kyle Retsly</span></h2>
+                                    <br><br>
+                                    <p><strong> About: </strong> General Contractor </p>
+                                    <p><strong>Location: </strong> Pheonix, Arizona </p>
+
+                            </div>
+                    
+                        <div class="col-md-5 text-center image-responsive">
+                             <!--/profile pic-->   
+                                  <img src="images/kyle.jpg" alt="" class="center-block">
+                        </div><!--/profile-->
+                     </div>
+
+         <div class=" containter col-sm-10 text-center specialties">
+                         <h4 align="left">Settings:</h4>                    
+                          <br>
+
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default btn-lg active">
+                        <input type="checkbox" checked> General  </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Exterior </label>
+                    <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox" checked> Electrical </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Plumbing </label>
+                         <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox" checked> Design </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Roofing </label>
+                     <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox" checked> Painting </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Bathrooms </label>
+                        <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox" checked> Kitchen </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Interiors </label>
+                         <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox" checked> Foundation </label>
+                      <label class="btn btn-work btn-default btn-lg active">
+                        <input type="checkbox"> Landscaping </label>
+                    </div>
+
+                    <div class="container-fluid col-sm-10 text-center specialties">
+                         <button class="dropdown btn btn-default col-sm-3 dropdown-toggle" data-toggle="dropdown" >
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Property Type <b class="caret"></b></a> </li>
+                                  <ul class="dropdown-menu">
+                                <li><a href="#">Single Family Home</a></li>
+                                <li><a href="#">Apartment</a></li>
+                                <li><a href="#">Condo</a></li>
+                                 <li><a href="#">Tenancy in Common</a></li>
+                                  <li class="divider"></li>
+                                <li><a href="#">Multi-Unit Building</a></li>
+                              </ul>
+                            </button> 
+
+                           <form class="form-inline">
+                              <div class="form-group">
+                                <label class="sr-only" for="exampleInputEmail3">Location</label>
+                                 <textarea  class="form-control" style="height: 60px;" placeholder="Update Location"></textarea>
+                              </div>
+                              <button type="button" class="btn btn-default"  data-dismiss="modal" data-target="/#">Save</button>
+                            </form>     
+                          </div> <!--close row-->
+              </div> <!--classose specialties -->
+<div class='row'>
+</div>
+         <div class="container col-sm-10">
+              <div class="row">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4>
+                       6 New Messages
+                      </h4>
+                    </div>
+                    <table class="table table-fixed">
+                      <thead>
+                        <tr>
+                          <th class="col-xs-2">From:</th><th class="col-xs-8">Subject:</th><th class="col-xs-2">Property #</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="col-xs-2">Mike Adams</td><td class="col-xs-8">Fix The Kitchen</td><td class="col-xs-2">Property #0923</td>
+                        </tr>
+                        <tr>
+                          <td class="col-xs-2">Holly Galivan</td><td class="col-xs-8"> Agent Needs Contractor</td><td class="col-xs-2">3044</td>
+                        </tr>
+                        <tr>
+                          <td class="col-xs-2">Mary Shea</td><td class="col-xs-8"> Full Reno </td><td class="col-xs-2">2086</td>
+                        </tr>
+                        <tr>
+                          <td class="col-xs-2">Jim Adams</td><td class="col-xs-8"> Come Redo the Backyard </td> <td>0923</td>
+                        </tr>
+                        <tr>
+                          <td class="col-xs-2">Henry Galivan</td><td class="col-xs-8">Fix Sink </td> <td class="col-xs-2">3544</td>
+                        </tr>
+                        <tr>
+                          <td class="col-xs-2">Eric Pearson</td><td class="col-xs-8">Full Reno</td> <td class="col-xs-2">5626</td>
+                        </tr>
+                     </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+           
+                
+         </div> <!--close container -->
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+    </div>  <!--close modal body -->
+
+    </div>  <!--close content -->
+ </div>  <!--close modal dialog -->
+</div><!--close profile tag -->
+
+
+
+        <div class="templatemo-partners" >
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="templatemo-line-header" >
+                        <div class="text-center">
+                            <hr class="team_hr team_hr_left hr_gray"/><span class="txt_darkgrey">OUR PARTNERS</span>
+                            <hr class="team_hr team_hr_right hr_gray" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+                    <div class="text-center">
+
+                        <div style="margin-top:60px;">
+                            <ul class="list-inline partners-center">
+                                
+                                <li class="col-sm-4 col-md-4 templatemo-partner-item">
+                                    <a href="#"><img src="images/partners/zillow.jpg" class="img-responsive" alt="partner 2" /></a>
+                                </li>
+                                <li class="col-sm-4 col-md-4 templatemo-partner-item">
+                                    <a href="#"><img src="images/partners/retsly.png" class="img-responsive" alt="partner 1" /></a>
+                                </li>
+                                <li class="col-sm-4 col-md-4 templatemo-partner-item">
+                                    <a href="#"><img src="images/partners/trulia.jpg" class="img-responsive" alt="partner 3" /></a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="templatemo-footer" >
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+
+                        <div class="footer_container">
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#">
+                                        <span class="social-icon-fb"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="social-icon-rss"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="social-icon-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="social-icon-linkedin"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="social-icon-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="height30"></div>
+                            <a class="btn btn-lg btn-orange" href="#top" role="button" id="btn-back-to-top">Back To Top</a>
+                            <div class="height30"></div>
+                        </div>
+                        <div class="footer_bottom_content">
+                   			<span>Copyright © 2015 <a href="#">Home Hero</a></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        $(document).ready(function(){
+            $("#myBtn").click(function(){
+                $("#myModal").modal();
+            });
+        });
+
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function($scope, $http) {
+          $http.get("https://c7f4f4f3.ngrok.io/api/property")
+          .success(function (response) {
+            $scope.sortType = 'score';
+            $scope.sortReverse = true;
+            $scope.leads = response;
+            $scope.property = [];
+
+            // Calculate Score based on job value, distance and days since last updated
+            for (var i = $scope.leads.length - 1; i >= 0; i--) {
+                if ($scope.leads[i].distance_from_user) {
+                $scope.leads[i].score = $scope.leads[i].job_value / ($scope.leads[i].distance_from_user + $scope.leads[i].days_since_updated)
+            } else {
+                $scope.leads[i].score = 0;
+            };
+            };
+          });
+        });
+
+
+        </script>
+    </body>
+</html>
