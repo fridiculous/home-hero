@@ -8,7 +8,7 @@ class Property(object):
         self.photos = kwargs.get('photos')
 
     def analyze(self):
-        with open('hero/data/phoenix.json') as data_file:
+        with open('/data/phoenix.json') as data_file:
             data = json.load(data_file)
 
         return data
