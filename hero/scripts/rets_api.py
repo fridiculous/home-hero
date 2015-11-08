@@ -44,6 +44,33 @@ def get_listings_near(near="Mesa", limit=100, offset=0):
     return _get_response(url, querystring)
 
 
+def get_agents(limit=100, offset=0):
+    url = "https://rets.io/api/v1/armls/agents"
+
+    querystring = {
+        "access_token":"09d66e16b29cdd623dd1e7d0d0f1f062",
+        "limit":str(limit),"sortBy":"id","order":"desc","offset":str(offset),
+        }
+
+    return _get_response(url, querystring)
+
+
+def batch_agents():
+    agent_list = []
+    df = pd.DataFrame(json.loads(get_agents(offset=0))['bundle'])
+    agent_list.append(df)
+
+    counter = 0
+    while len(df) > 0:
+        counter = counter + 1
+        offset = 100*counter
+        print('Running job {} with offset {}, last job had {} agents'.format(counter, offset, len(df)))
+        df = pd.DataFrame(json.loads(get_agents(offset=offset))['bundle'])
+        agent_list.append(df)
+
+    return agent_list
+
+
 def batch_listings_near(near="Mesa"):
     mesa_list = []
     df = pd.DataFrame(json.loads(get_listings_near(offset=0))['bundle'])
