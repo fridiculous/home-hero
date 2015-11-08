@@ -133,12 +133,10 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
                                  <div class="container col-xs-10 col-sm-6 ">
                                    <ul style="list-style-type:none">
-                                     <li> <h3> Renovation Value: ${{ lead.job_value/1000 | number:0}}k </h3></li>
-                                        <li> Sale Price: ${{ lead.price/1000 | number:0}}k  </li>
-                                     <li> Sold: {{ lead.days_since_updated }} days ago </li>
-                                   <!--            {{ lead.listDate | timeAgo }},  -->
-                                    <li>    Distance: {{ lead.distance_from_user | number:0 }} mi </li>
-                                    <li>   Score: {{ lead.score | number:0}} </li>
+                                    <li> <h3> Renovation Value: ${{ lead.job_value/1000 | number:0}}k </h3></li>
+                                    <li> Sale Price: ${{ lead.price/1000 | number:0}}k</li>
+                                    <li> Sold: {{ lead.days_since_updated }} days ago  -  Distance: {{ lead.distance_in_miles_from_user | number:0 }} mi </li>
+                                    <li> Score: {{ lead.score | number:0}} </li>
                                     </ul>
                                 </div>
                         </div>
@@ -167,12 +165,11 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                         <h1 class="txt_green">Property Details </h1>
 
                                          <ul class="list-inline text-center" style="list-style-type:none">
-                                             <li> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k |</li>
-                                                <li> Sale Price: ${{ property[property.length - 1].price/1000 | number:0}}k  |</li>
-                                             <li> Sold: {{ property[property.length - 1].days_since_updated }} days ago |</li>
-                                           <!--            {{ property[property.length - 1].listDate | timeAgo }},  -->
-                                            <li>    Distance: {{ property[property.length - 1].distance_from_user | number:0 }} mi </li>
-                                            <li>   Score: {{ property[property.length - 1].score | number:0}} </li>
+                                            <li> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k |</li>
+                                            <li> Sale Price: ${{ property[property.length - 1].price/1000 | number:0}}k  |</li>
+                                            <li> Sold: {{ property[property.length - 1].days_since_updated }} days ago |</li>
+                                            <li> Distance: {{ property[property.length - 1].distance_in_miles_from_user | number:0 }} mi </li>
+                                            <li> Score: {{ property[property.length - 1].score | number:0 }} </li>
                                          </br> <br>
                                             <div class="photo-slider" style="float:center;">
                                                 <div ng-repeat="img in property[property.length - 1].media" style="display:inline;">
@@ -452,7 +449,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                 $("#myModal").modal();
             });
         });
-
+        var data;
         var app = angular.module('myApp', []);
         app.controller('customersCtrl', function($scope, $http) {
           // $http.get("https://c7f4f4f3.ngrok.io/api/property")
@@ -461,12 +458,13 @@ http://www.templatemo.com/free-website-templates/395-urbanic
             $scope.sortType = 'score';
             $scope.sortReverse = true;
             $scope.leads = response;
+            data = response;
             $scope.property = [];
 
             // Calculate Score based on job value, distance and days since last updated
             for (var i = $scope.leads.length - 1; i >= 0; i--) {
-                if ($scope.leads[i].distance_from_user) {
-                $scope.leads[i].score = $scope.leads[i].job_value / ($scope.leads[i].distance_from_user + $scope.leads[i].days_since_updated)
+                if ($scope.leads[i].distance_in_miles_from_user) {
+                $scope.leads[i].score = $scope.leads[i].job_value / ($scope.leads[i].distance_in_miles_from_user + $scope.leads[i].days_since_updated)
             } else {
                 $scope.leads[i].score = 0;
             };

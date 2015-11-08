@@ -61,15 +61,14 @@ http://www.templatemo.com/free-website-templates/395-urbanic
     </nav>
 
 
-
+<div ng-app="myApp">
 
   <!-- Modal -->
-<div ng-app="myApp" ng-controller="signinCtrl">
   <div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" ng-controller="customersCtrl">
         <div class="modal-header" style="padding:35px 50px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <div style="display=inline"> <img class="image-responsive" src="images/homehero6.png" alt="Home Hero" title="Home Hero" />
@@ -90,8 +89,8 @@ http://www.templatemo.com/free-website-templates/395-urbanic
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
               <!--  data-toggle="modal" data-target="#profile"  -->
-              <button class="btn btn-success btn-block" ng-click="sendEmail()">
-                <a href="/index.html"><span class="glyphicon glyphicon-off"></span>Login
+              <button class="btn btn-success btn-block">
+                <span class="glyphicon glyphicon-off"></span><a href="index.html" ng-click="alert()">Login</a>
               </button>
           </form>
         </div>
@@ -105,87 +104,77 @@ http://www.templatemo.com/free-website-templates/395-urbanic
     </div>
   </div>
 
-</div>
 
-<div ng-app="myApp" ng-controller="customersCtrl">
+<div ng-controller="customersCtrl">
+  <div class="container" style="margin-top:40px;">
+  </div>
 
-        <div class="container" style="margin-top:40px;">
-        </div>
+  <div class="lead templatemo-gallery-category text-center" style="font-size:16px; margin-top:40px;">
+     Sort by:
+      <a href="#" ng-click="sortType='score'; sortReverse = !sortReverse">Best Fit</a> |
+      <a href="#" ng-click="sortType='job_value'; sortReverse = !sortReverse">Renovation Value</a> |
+      <a href="#" ng-click="sortType='price'; sortReverse = !sortReverse">Sale Price</a> |
+      <a href="#" ng-click="sortType='days_since_updated'; sortReverse = !sortReverse">Days Since Sale</a>
+  </div>
 
+  <ul style="list-style-type:none">
+      <li ng-repeat="lead in leads | orderBy:sortType:sortReverse">
+          <a href=""  data-toggle="modal" data-target="#property" >
+          <div ng-click="property.push(lead)" class="container colorbox col-xs-10 templatemo-project-box" >
+                  <div class="project-overlay">
+                     <br><br><br>
+                     <h3 class="xs-hidden"> Click to see Property Details </h3>
+                  </div>
 
-    <!--    <div>sortType{{ sortType }}</div>
-            <div>sortReverse{{ sortReverse }}</div>  -->
+                  <div class="container col-xs-10 col-sm-4">
+                      <img style="max-height:180px" class="image-responsive" src="{{ lead.media[0].url }}" />
+                  </div>
 
-        <div class="lead templatemo-gallery-category text-center" style="font-size:16px; margin-top:40px;">
-           Sort by:
-            <a href="#" ng-click="sortType='score'; sortReverse = !sortReverse">Best Fit</a> |
-            <a href="#" ng-click="sortType='job_value'; sortReverse = !sortReverse">Renovation Value</a> |
-            <a href="#" ng-click="sortType='price'; sortReverse = !sortReverse">Sale Price</a> |
-            <a href="#" ng-click="sortType='days_since_updated'; sortReverse = !sortReverse">Days Since Sale</a>
-        </div>
-
-
-                <ul style="list-style-type:none">
-                    <li ng-repeat="lead in leads | orderBy:sortType:sortReverse">
-                        <a href=""  data-toggle="modal" data-target="#property" >
-                        <div ng-click="property.push(lead)" class="container colorbox col-xs-10 templatemo-project-box" >
-                                <div class="project-overlay">
-                                   <br><br><br>
-                                   <h3 class="xs-hidden"> Click to see Property Details </h3>
-                                </div>
-
-                                <div class="container col-xs-10 col-sm-4">
-                                    <img style="max-height:180px" class="image-responsive" src="{{ lead.media[0].url }}" />
-                                </div>
-
-                                 <div class="container col-xs-10 col-sm-6 ">
-                                   <ul style="list-style-type:none">
-                                     <li> <h3> Renovation Value: ${{ lead.job_value/1000 | number:0}}k </h3></li>
-                                        <li> Sale Price: ${{ lead.price/1000 | number:0}}k  </li>
-                                     <li> Sold: {{ lead.days_since_updated }} days ago </li>
-                                   <!--            {{ lead.listDate | timeAgo }},  -->
-                                    <li>    Distance: {{ lead.distance_from_user | number:0 }} mi </li>
-                                    <li>   Score: {{ lead.score | number:0}} </li>
-                                    </ul>
-                                </div>
-                        </div>
-                        </a>
-                            <div class="row center-block">
-                                 <div class="center-block col-xs-5 center-block">
-                                <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-remove "></span> No Thanks</a> </div>
-                                <div class="col-xs-6 btn-right">
-                               <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-heart"></span> Yes, Save this Job! </a> </div>
-                           </div>
-                    </li>
-                </ul>
+                   <div class="container col-xs-10 col-sm-6 ">
+                     <ul style="list-style-type:none">
+                       <li> <h3> Renovation Value: ${{ lead.job_value/1000 | number:0}}k </h3></li>
+                          <li> Sale Price: ${{ lead.price/1000 | number:0}}k  </li>
+                       <li> Sold: {{ lead.days_since_updated }} days ago </li>
+                     <!--            {{ lead.listDate | timeAgo }},  -->
+                      <li>    Distance: {{ lead.distance_from_user | number:0 }} mi </li>
+                      <li>   Score: {{ lead.score | number:0}} </li>
+                      </ul>
+                  </div>
+          </div>
+          </a>
+              <div class="row center-block">
+                   <div class="center-block col-xs-5 center-block">
+                  <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-remove "></span> No Thanks</a> </div>
+                  <div class="col-xs-6 btn-right">
+                 <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-heart"></span> Yes, Save this Job! </a> </div>
+             </div>
+      </li>
+  </ul>
 
 
 
             <div id="property" class="modal fade">
                  <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                             <div class="modal-header" style="padding:35px 50px;">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                             <h4 class="modal-title"> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </h4>
-                           </div>
-
-                            <div class="modal-body" style="padding:40px 50px;">
+                      <div class="modal-header" style="padding:35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </h4>
+                      </div>
+                      <div class="modal-body" style="padding:40px 50px;">
                                  <div class="container-fluid row col-xs-10" style="font-size:16px; margin-top:20px;">
+                                  <h1>Property Details </h1>
+                                   <ul class="list-inline" style="list-style-type:none">
+                                      <li> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </li>
+                                      <li> Sale Price: ${{ property[property.length - 1].price/1000 | number:0}}k  </li>
+                                      <li> Sold: {{ property[property.length - 1].days_since_updated }} days ago </li>
+                                      <li> Distance: {{ property[property.length - 1].distance_in_miles_from_user | number:0 }} mi </li>
+                                      <li> Score: {{ property[property.length - 1].score | number:0}} </li>
 
-                                        <h1>Property Details </h1>
-                                         <ul class="list-inline" style="list-style-type:none">
-                                             <li> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </li>
-                                                <li> Sale Price: ${{ property[property.length - 1].price/1000 | number:0}}k  </li>
-                                             <li> Sold: {{ property[property.length - 1].days_since_updated }} days ago </li>
-                                           <!--            {{ property[property.length - 1].listDate | timeAgo }},  -->
-                                            <li>    Distance: {{ property[property.length - 1].distance_from_user | number:0 }} mi </li>
-                                            <li>   Score: {{ property[property.length - 1].score | number:0}} </li>
-
-                                            <div class="photo-slider">
-                                                <divn ng-repeat="img in property[property.length - 1].media" style="display:inline;">
-                                                <img class="image-responsive" src="{{ img.url }}"  style="float:center;" />
-                                                </div>
-                                            </div>
+                                      <div class="photo-slider">
+                                        <div ng-repeat="img in property[property.length - 1].media" style="display:inline;">
+                                        <img class="image-responsive" src="{{ img.url }}"  style="float:center;" />
+                                        </div>
+                                      </div>
                                          </ul>
 
                                 <div class="col-sm-12">
@@ -228,36 +217,28 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 </div> <!--close app -->
 
 
-
-
-
-
 <div id="profile" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
-            <div class="modal-header" style="padding:35px 50px;">
-             <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <h1 align="center"> <span class="txt_blue"> Profile </span><span class="txt_green">  | Settings</span> </h1>
-            </div>
-
-
+      <div class="modal-header" style="padding:35px 50px;">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h1 align="center"> <span class="txt_blue"> Profile </span><span class="txt_green">  | Settings</span> </h1>
+      </div>
     <div class="modal-body" style="padding:40px 50px;">
         <div class="container" style="font-size:16px; margin-top:80px;">
+          <div class="container col-md-10 text-center">
+               <div class="col-md-7 ">
+                          <h2><span class="txt_blue">Kyle Retsly</span></h2>
+                          <br><br>
+                          <p><strong> About: </strong> General Contractor </p>
+                          <p><strong>Location: </strong> Pheonix, Arizona </p>
+                </div>
 
-                    <div class="container col-md-10 text-center">
-                         <div class="col-md-7 ">
-                                    <h2><span class="txt_blue">Kyle Retsly</span></h2>
-                                    <br><br>
-                                    <p><strong> About: </strong> General Contractor </p>
-                                    <p><strong>Location: </strong> Pheonix, Arizona </p>
-
-                            </div>
-
-                        <div class="col-md-5 text-center image-responsive">
-                             <!--/profile pic-->
-                                  <img src="images/kyle.jpg" alt="" class="center-block">
-                        </div><!--/profile-->
-                     </div>
+              <div class="col-md-5 text-center image-responsive">
+                   <!--/profile pic-->
+                        <img src="images/kyle.jpg" alt="" class="center-block">
+              </div><!--/profile-->
+           </div>
 
          <div class=" containter col-sm-10 text-center specialties">
                          <h2 align="left">Settings:</h2>
@@ -442,14 +423,14 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                             <div class="height30"></div>
                         </div>
                         <div class="footer_bottom_content">
-                   			<span>Copyright © 2015 <a href="#">Home Hero</a></span>
+                   			  <span>Copyright © 2015 <a href="#">Home Hero</a></span>
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
-
+</div>
         <script>
         $(document).ready(function(){
             $("#myBtn").click(function(){
@@ -459,22 +440,15 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
         var app = angular.module('myApp', []);
         app.controller('signinCtrl', function($scope, $http) {
-
           $scope.sendEmail = function(){
               console.log('EMAIL SENT');
-              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=simonfrid@gmail.com")
-              .success(function (response) {});
+              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=kyle.retsly@gmail.com")
+              .success(function (response) {
+              });
           };
         });
 
         app.controller('customersCtrl', function($scope, $http) {
-
-          $scope.sendEmail = function(){
-              console.log('EMAIL SENT');
-              $http.get("http://192.168.99.100:8000/api/email?name=Kyle&email=simonfrid@gmail.com")
-              .success(function (response) {});
-          };
-
           // $http.get("https://c7f4f4f3.ngrok.io/api/property")
           $http.get("http://192.168.99.100:8000/api/property")
           .success(function (response) {
@@ -485,8 +459,8 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
             // Calculate Score based on job value, distance and days since last updated
             for (var i = $scope.leads.length - 1; i >= 0; i--) {
-                if ($scope.leads[i].distance_from_user) {
-                $scope.leads[i].score = $scope.leads[i].job_value / ($scope.leads[i].distance_from_user + $scope.leads[i].days_since_updated)
+                if ($scope.leads[i].distance_in_miles_from_user) {
+                $scope.leads[i].score = $scope.leads[i].job_value / ($scope.leads[i].distance_in_miles_from_user + $scope.leads[i].days_since_updated)
             } else {
                 $scope.leads[i].score = 0;
             };
