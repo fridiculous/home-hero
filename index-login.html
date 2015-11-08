@@ -14,10 +14,10 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--<link rel="shortcut icon" href="PUT YOUR FAVICON HERE">-->
-        
+
         <!-- Google Web Font Embed -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
 
@@ -25,7 +25,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         <link href="js/colorbox/colorbox.css"  rel='stylesheet' type='text/css'>
         <link href="css/style.css"  rel='stylesheet' type='text/css'>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js"  type="text/javascript"></script>
         <script src="js/stickUp.min.js"  type="text/javascript"></script>
@@ -33,7 +33,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         <script src="js/templatemo_script.js"  type="text/javascript"></script>
 
     </head>
-    
+
     <body>
 
 
@@ -45,8 +45,8 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
                 <li class="col-sm-5"> <h1 align="center"> <span class="txt_white">Welcome to </span><span class="txt_green">Home Hero</span> </h1>
                         <p class="txt_slogan"><i>Find your next Contract Job.</i></p> </li>
-        
-            
+
+
                 <li class="active col-sm-2 navbar-right ">
                  <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#login">Login</button>
                 </li>
@@ -54,19 +54,19 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                  <li class="active col-sm-2 navbar-right hidden ">
                 <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#profile"> Profile <span class="badge badge-important">6</span>
                 </button></li>
-           
+
 
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
-            
 
 
- 
+
+
   <!-- Modal -->
   <div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
@@ -88,7 +88,9 @@ http://www.templatemo.com/free-website-templates/395-urbanic
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
-              <button type="" class="btn btn-success btn-block" data-toggle="modal" data-target="#profile" ><span class="glyphicon glyphicon-off"></span> Login</button>
+              <!--  data-toggle="modal" data-target="#profile"  -->
+              <button type="" class="btn btn-success btn-block" >
+              <a href="/index.html"><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -97,9 +99,9 @@ http://www.templatemo.com/free-website-templates/395-urbanic
           <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
-      
+
     </div>
-  </div> 
+  </div>
 </div>
 
 
@@ -107,14 +109,14 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         </div>
 
 
-<div ng-app="myApp" ng-controller="customersCtrl"> 
+<div ng-app="myApp" ng-controller="customersCtrl">
     <!--    <div>sortType{{ sortType }}</div>
             <div>sortReverse{{ sortReverse }}</div>  -->
 
         <div class="lead templatemo-gallery-category text-center" style="font-size:16px; margin-top:40px;">
-           Sort by: 
+           Sort by:
             <a href="#" ng-click="sortType='score'; sortReverse = !sortReverse">Best Fit</a> |
-            <a href="#" ng-click="sortType='job_value'; sortReverse = !sortReverse">Renovation Value</a> | 
+            <a href="#" ng-click="sortType='job_value'; sortReverse = !sortReverse">Renovation Value</a> |
             <a href="#" ng-click="sortType='price'; sortReverse = !sortReverse">Sale Price</a> |
             <a href="#" ng-click="sortType='days_since_updated'; sortReverse = !sortReverse">Days Since Sale</a>
         </div>
@@ -125,12 +127,12 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                         <a href=""  data-toggle="modal" data-target="#property" >
                         <div ng-click="property.push(lead)" class="container colorbox col-xs-10 templatemo-project-box" >
                                 <div class="project-overlay">
-                                   <br><br><br> 
-                                   <h3 class="xs-hidden"> Click to see Property Details </h3> 
+                                   <br><br><br>
+                                   <h3 class="xs-hidden"> Click to see Property Details </h3>
                                 </div>
 
                                 <div class="container col-xs-10 col-sm-4">
-                                    <img style="max-height:180px" class="image-responsive" src="{{ lead.media[0].url }}" /> 
+                                    <img style="max-height:180px" class="image-responsive" src="{{ lead.media[0].url }}" />
                                 </div>
 
                                  <div class="container col-xs-10 col-sm-6 ">
@@ -150,10 +152,10 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                 <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-remove "></span> No Thanks</a> </div>
                                 <div class="col-xs-6 btn-right">
                                <a href="" class="btn btn-fav txt_white"> <span class="glyphicon glyphicon-heart"></span> Yes, Save this Job! </a> </div>
-                           </div> 
+                           </div>
                     </li>
                 </ul>
-          
+
 
 
             <div id="property" class="modal fade">
@@ -163,7 +165,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                              <h4 class="modal-title"> Renovation Value: ${{ property[property.length - 1].job_value/1000 | number:0}}k </h4>
                            </div>
-                            
+
                             <div class="modal-body" style="padding:40px 50px;">
                                  <div class="container-fluid row col-xs-10" style="font-size:16px; margin-top:20px;">
 
@@ -175,16 +177,16 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                            <!--            {{ property[property.length - 1].listDate | timeAgo }},  -->
                                             <li>    Distance: {{ property[property.length - 1].distance_from_user | number:0 }} mi </li>
                                             <li>   Score: {{ property[property.length - 1].score | number:0}} </li>
-                                        
+
                                             <div class="photo-slider">
                                                 <divn ng-repeat="img in property[property.length - 1].media" style="display:inline;">
                                                 <img class="image-responsive" src="{{ img.url }}"  style="float:center;" />
                                                 </div>
                                             </div>
                                          </ul>
-                                    
+
                                 <div class="col-sm-12">
-                                     <h3 align="left"> This Property Needs Work On: </h3>                    
+                                     <h3 align="left"> This Property Needs Work On: </h3>
                                       <br>
                                 <div class="btn-group" data-toggle="buttons">
                                   <label class="btn btn-default btn-lg active">
@@ -208,8 +210,8 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                               <div class="row center-block">
                                 <div class="col-xs-6 col-xs-offset-6 btn-right">
                                <a href="" class="btn btn-fav btn-default txt_white"> <span class="glyphicon glyphicon-heart"></span> Save this Job! </a> </div>
-                           </div> 
-                                       
+                           </div>
+
                                     </div> <!--close container  -->
                             </div>  <!--close modal body -->
 
@@ -234,11 +236,11 @@ http://www.templatemo.com/free-website-templates/395-urbanic
              <button type="button" class="close" data-dismiss="modal">&times;</button>
              <h1 align="center"> <span class="txt_blue"> Profile </span><span class="txt_green">  | Settings</span> </h1>
             </div>
-              
+
 
     <div class="modal-body" style="padding:40px 50px;">
         <div class="container" style="font-size:16px; margin-top:80px;">
-                
+
                     <div class="container col-md-10 text-center">
                          <div class="col-md-7 ">
                                     <h2><span class="txt_blue">Kyle Retsly</span></h2>
@@ -247,15 +249,15 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                     <p><strong>Location: </strong> Pheonix, Arizona </p>
 
                             </div>
-                    
+
                         <div class="col-md-5 text-center image-responsive">
-                             <!--/profile pic-->   
+                             <!--/profile pic-->
                                   <img src="images/kyle.jpg" alt="" class="center-block">
                         </div><!--/profile-->
                      </div>
 
          <div class=" containter col-sm-10 text-center specialties">
-                         <h2 align="left">Settings:</h2>                    
+                         <h2 align="left">Settings:</h2>
                           <br>
 
                     <div class="btn-group" data-toggle="buttons">
@@ -296,7 +298,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                   <li class="divider"></li>
                                 <li><a href="#">Multi-Unit Building</a></li>
                               </ul>
-                            </button> 
+                            </button>
 
                            <form class="form-inline">
                               <div class="form-group">
@@ -304,7 +306,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                                  <textarea  class="form-control" style="height: 60px;" placeholder="Update Location"></textarea>
                               </div>
                               <button type="button" class="btn btn-default"  data-dismiss="modal" data-target="/#">Save</button>
-                            </form>     
+                            </form>
                           </div> <!--close row-->
               </div> <!--classose specialties -->
 <div class='row'>
@@ -347,8 +349,8 @@ http://www.templatemo.com/free-website-templates/395-urbanic
               </div>
           </div>
         </div>
-           
-                
+
+
          </div> <!--close container -->
                 <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -379,7 +381,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
 
                         <div style="margin-top:60px;">
                             <ul class="list-inline partners-center">
-                                
+
                                 <li class="col-sm-4 col-md-4 templatemo-partner-item">
                                     <a href="#"><img src="images/partners/zillow.jpg" class="img-responsive" alt="partner 2" /></a>
                                 </li>
@@ -439,7 +441,7 @@ http://www.templatemo.com/free-website-templates/395-urbanic
                         <div class="footer_bottom_content">
                    			<span>Copyright © 2015 <a href="#">Home Hero</a></span>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
