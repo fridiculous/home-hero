@@ -58,3 +58,6 @@ target/
 
 # SQL Ignore
 *.sqlite3
+
+# data
+data/az_df.csv
