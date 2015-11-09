@@ -452,7 +452,6 @@ http://www.templatemo.com/free-website-templates/395-urbanic
         var data;
         var app = angular.module('myApp', []);
         app.controller('customersCtrl', function($scope, $http) {
-          // $http.get("https://c7f4f4f3.ngrok.io/api/property")
           $http.get("http://192.168.99.100:8000/api/property")
           .success(function (response) {
             $scope.sortType = 'score';

@@ -82,7 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hero.wsgi.application'
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
